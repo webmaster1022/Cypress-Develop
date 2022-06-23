@@ -1,0 +1,259 @@
+$code-border-radius: 4px;
+
+.reporter {
+  .error {
+    background-color: $gray-1000;
+    min-height: 20px;
+    padding: 24px;
+
+    h2 {
+      color: $err-text;
+      font-size: 1.3em;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 0.6em;
+
+      a {
+        float: right;
+      }
+    }
+
+    p, ul, ol {
+      font-size: 1.1em;
+    }
+
+    pre {
+      border-color: $orange-300;
+      color: $orange-300;
+      display: block;
+      width: 100%;
+      white-space: initial;
+      overflow: hidden;
+      line-height: 1.6;
+
+      code {
+        font-family: inherit;
+      }
+    }
+
+    ul {
+      line-height: 1.6;
+      margin-bottom: 10px;
+      padding-left: 2em;
+    }
+
+    ul li {
+      list-style: disc
+    }
+
+    ol li {
+      list-style: decimal;
+    }
+  }
+
+  .runnable-err-wrapper {
+    cursor: default;
+  }
+
+  .studio-err-wrapper {
+    display: none;
+    text-align: center;
+  }
+
+  &.studio-active .attempt-failed .studio-err-wrapper {
+    display: block;
+  }
+
+  .runnable-err {
+    border-left: 2px solid $fail;
+    background-color: $err-background;
+    clear: both;
+    color: $err-text;
+    font-family: $monospace;
+    margin-bottom: 0;
+    margin-top: 5px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    user-select: initial;
+    overflow: auto;
+  }
+
+  .runnable-err-header {
+    background-color: rgba($red-400, 0.05);
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    font-weight: bold;
+
+    .runnable-err-name {
+      flex-grow: 2;
+      font-size: 13px;
+      line-height: 22px;
+      color: $err-header-text;
+
+      svg {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .runnable-err-docs-url {
+    margin-left: 0.5em;
+    cursor: pointer;
+    font-family: $font-sans;
+  }
+
+  .runnable-err-message {
+    font-family: $monospace;
+    font-size: 1em;
+    padding: 10px;
+
+    code {
+      background-color: rgba($black, 0.2);
+      border-radius: 4px;
+      color: $err-code-text;
+      padding: 2px 5px;
+    }
+
+    strong {
+      color: $err-code-text;
+      font-weight: bold;
+    }
+  }
+
+  .runnable-err-stack-expander {
+    align-items: center;
+    border-top: 1px solid rgba($red-400, 0.1);
+    display: flex;
+
+    .collapsible-header {
+      flex-grow: 1;
+
+      &:focus {
+        outline: 0;
+
+        div {
+          background: $red-900;
+        }
+      }
+
+      &:active,
+      &:hover {
+        .collapsible-header-text {
+          color: $red-100;
+        }
+        .collapsible-indicator {
+          .icon-dark {
+            stroke: $red-200;
+          }
+        }
+      }
+
+      div {
+        cursor: pointer;
+        outline: none;
+        padding: 14px 10px;
+        width: 100%;
+
+        .collapsible-header-text {
+          color: $red-300;
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        .collapsible-indicator {
+          line-height: 18px;
+          .icon-dark {
+            stroke: $red-400;
+          }
+        }
+      }
+    }
+
+    .runnable-err-print {
+      &:focus {
+        outline: none;
+      }
+
+      &:active,
+      &:hover {
+        div {
+          color: $red-100;
+        }
+
+        svg {
+          color: $red-200;
+        }
+      }
+
+      div {
+        color: $red-300;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        height: 100%;
+        padding: 14px 10px;
+        width: 100%;
+
+        &:focus {
+          outline: none;
+        }
+
+        svg {
+          color: $red-400;
+          margin: 4px 3px;
+          vertical-align: middle;
+        }
+
+        span {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+  .runnable-err-stack-trace {
+    font-family: $monospace;
+    overflow: auto;
+    padding: 0 10px 10px;
+
+    .err-stack-line {
+      white-space: pre;
+
+      // ensure empty lines still take up vertical space
+      &:empty:before {
+        content: ' ';
+      }
+    }
+  }
+
+  .test-err-code-frame {
+    background-color: $gray-1000;
+    border: 1px solid rgba($red-400, 0.25);
+    border-radius: $code-border-radius;
+    margin: 0 10px 10px;
+
+    .runnable-err-file-path {
+      background: rgba($gray-900, 0.5);
+      border-top-left-radius: $code-border-radius;
+      border-top-right-radius: $code-border-radius;
+      display: block;
+      font-size: 14px;
+      line-height: 16px;
+      padding: 8px;
+      word-break: break-all;
+
+      svg {
+        margin-right: 6px;
+        vertical-align: middle;
+      }
+    }
+
+    pre {
+      border: 0;
+      border-bottom-left-radius: $code-border-radius;
+      border-bottom-right-radius: $code-border-radius;
+      padding-left: 10px;
+    }
+  }
+}

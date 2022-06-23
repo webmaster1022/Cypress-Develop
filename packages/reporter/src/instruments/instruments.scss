@@ -1,0 +1,54 @@
+.reporter {
+  .instruments-container {
+    .route-alias-name {
+      border-radius: 4px;
+      background-color: $teal-500;
+      color: $white;
+      display: inline-block;
+      font-family: $font-sans;
+      font-style: normal;
+      font-size: 12px;
+      line-height: 16px;
+      padding: 0px 5px;
+    }
+
+    .instrument-content {
+      background-color: $reporter-section-background;
+      border-left: 1px solid $reporter-section-background;
+      border-radius: 0 3px 3px;
+      border-right: 1px solid $reporter-section-background;
+      margin-bottom: 10px;
+      overflow: auto;
+      padding: 3px 10px;
+    }
+
+    .instrument-content h3,
+    h2,
+    h1:first-child {
+      margin-top: 0;
+    }
+
+    table {
+      margin-bottom: 0;
+
+      td {
+        font-family: $monospace;
+        font-size: 11px;
+      }
+    }
+
+    .call-count {
+      white-space: nowrap;
+    }
+
+    .no-calls .call-count,
+    .no-responses .route-num-responses {
+      color: $fail;
+    }
+  }
+
+  .no-agents .instruments-container,
+  .no-routes .instruments-container {
+    display: none;
+  }
+}

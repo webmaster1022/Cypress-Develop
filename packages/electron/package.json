@@ -1,0 +1,38 @@
+{
+  "name": "@packages/electron",
+  "version": "0.0.0-development",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "build": "node ./bin/cypress-electron --install",
+    "build-prod": "yarn build",
+    "clean-deps": "rimraf node_modules",
+    "postinstall": "echo '@packages/electron needs: yarn build'",
+    "start": "./bin/cypress-electron",
+    "test": "yarn test-unit",
+    "test-debug": "yarn test-unit --inspect-brk=5566",
+    "test-unit": "mocha",
+    "test-watch": "yarn test-unit --watch"
+  },
+  "dependencies": {
+    "@packages/icons": "0.0.0-development",
+    "bluebird": "3.5.3",
+    "debug": "^4.3.2",
+    "fs-extra": "9.1.0",
+    "lodash": "^4.17.21",
+    "minimist": "1.2.6"
+  },
+  "devDependencies": {
+    "electron-packager": "15.4.0",
+    "execa": "4.1.0",
+    "mocha": "3.5.3",
+    "rimraf": "3.0.2"
+  },
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "bin": {
+    "cypress-electron": "./bin/cypress-electron"
+  }
+}

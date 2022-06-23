@@ -1,0 +1,160 @@
+$color-transition: color 150ms ease-out;
+
+.reporter {
+  header {
+    background-color: $gray-1000;
+    display: flex;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-family: $font-system;
+    min-height: $header-height;
+    outline: 0;
+    overflow: hidden;
+    padding: 20px 16px;
+    width: 100%;
+    z-index: 1;
+
+    .spacer {
+      flex-grow: 2;
+    }
+
+    button {
+      background-color: transparent;
+      border-color: transparent;
+      border-radius: 0;
+      display: inline-block;
+      font-weight: 300;
+      line-height: 26px;
+      outline: 0;
+      padding: 0 8px;
+      text-align: center;
+
+      &:hover {
+        background-color: $gray-900;
+      }
+
+      &[disabled],
+      &[disabled]:hover,
+      &[disabled]:active {
+        background: none;
+        box-shadow: none;
+        color: $gray-500;
+      }
+    }
+  }
+
+  .toggle-specs-wrapper {
+    display: flex;
+    height: 24px;
+
+    button {
+      color: $gray-700;
+      font-size: 16px;
+      font-weight: 300;
+      padding-left: 0;
+      padding-right: 8px;
+      transition: $color-transition;
+      width: auto !important;
+
+      &:focus,
+      &:hover {
+        background-color: initial;
+
+        svg {
+          color: $gray-400;
+          transition: $color-transition;
+        }
+
+        .toggle-specs-text {
+          color: $gray-400;
+          transition: $color-transition;
+        }
+      }
+
+      .toggle-specs-text {
+        color: $gray-500;
+        transition: $color-transition;
+      }
+
+      svg {
+        margin-right: 8px;
+        margin-bottom: -2px;
+      }
+    }
+  }
+
+  .stats {
+    align-items: center;
+    border: 1px solid $gray-900;
+    border-radius: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    height: 24px;
+    justify-content: space-between;
+    padding: 0 4px;
+    width: 124px;
+
+    li {
+      display: flex;
+      font-size: 12px;
+      font-weight: 600;
+      list-style-type: none;
+      padding: 0 4px;
+
+      svg {
+        margin-right: 2px;
+      }
+
+      .num {
+        color: $white;
+        line-height: 12px;
+        vertical-align: text-top;
+        width: 16px;
+        display: inline-block;
+        text-align: center;
+
+        &.empty {
+          color: $gray-800;
+        }
+      }
+    }
+  }
+
+  .controls {
+    align-items: center;
+    border: 1px solid $gray-900;
+    border-radius: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 24px;
+
+    .testing-preferences-toggle {
+      border-left: none;
+      color: $gray-700;
+      margin-left: 0;
+
+      &.open {
+        background-color: $gray-900;
+        color: $white;
+      }
+    }
+
+    span {
+      height: 100%;
+
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        color: $gray-400;
+        width: 31px;
+        padding: 0px;
+        border-left: 1px solid $gray-900;
+        margin-left: -1px;
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "extends": "./../ts/tsconfig.json",
+  "include": [
+    "**/*.ts",
+    "./index.ts"
+  ],
+  "compilerOptions": {
+    "skipLibCheck": true
+  },
+  "files": [
+    "./../ts/index.d.ts"
+  ],
+  "exclude": [
+    "test"
+  ]
+}

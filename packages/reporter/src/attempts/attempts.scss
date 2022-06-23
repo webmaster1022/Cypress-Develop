@@ -1,0 +1,132 @@
+.reporter {
+  .attempts {
+    .attempt-item > .collapsible > .collapsible-header-wrapper {
+      display: none;
+    }
+
+    &.has-multiple-attempts .attempt-item > .collapsible > .collapsible-header-wrapper {
+      display: flex;
+    }
+  }
+
+  .attempt-item {
+    margin-bottom: 7px;
+
+    > .collapsible {
+      position: relative;
+      margin-right: 16px;
+      .collapsible-header-inner {
+        outline: none;
+      }
+
+      &:before {
+        border-left: 1px solid $gray-900;
+        content: '';
+        left: 9px;
+        position: absolute;
+        top: 22px;
+        height: 15px;
+      }
+
+      &.is-open:before {
+        display: none;
+      }
+    }
+
+    &:last-child > .collapsible:before {
+      display: none;
+    }
+
+    > .is-open .open-close-indicator {
+      svg.collapse-icon {
+        display: block;
+      }
+
+      svg.expand-icon {
+        display: none;
+      }
+    }
+
+  .open-close-indicator {
+    svg {
+      margin-right: 3px;
+
+      &.collapse-icon {
+        display: none;
+      }
+
+      &.expand-icon {
+        display: block;
+      }
+    }
+  }
+
+  .attempt-content {
+    padding-left: 5px;
+  }
+}
+
+  .attempt-state-failed {
+    .attempt-name:after {
+      color: $fail;
+    }
+  }
+  .attempt-state-passed {
+    .attempt-name:after {
+      color: $pass;
+    }
+  }
+
+
+  .attempt-name {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    width: 100%;
+
+    &:before {
+      border-top: 1px solid $gray-900;
+      content: '';
+      left: 15px;
+      position: absolute;
+      right: 0;
+      top: 13px;
+    }
+
+    &:after {
+      color: $gray-600;
+      content: '•';
+      left: 7px;
+      position: absolute;
+      top: 4px;
+    }
+
+    .attempt-tag {
+      align-items: center;
+      border: 1px solid $gray-900;
+      border-radius: 7px;
+      box-shadow: 0 1px 1px 0 rgba($white, 0.20);
+      display: flex;
+      font-size: 11px;
+      padding: 2px 5px;
+      position: relative;
+      background-color: $black;
+      user-select: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $gray-1000;
+      }
+    }
+
+    .collapsible-indicator,
+    .collapsible-more {
+      display: none;
+    }
+
+    .attempt-tag > .attempt-state {
+      margin-left: 3px;
+      margin-right: 0;
+    }
+  }
+}

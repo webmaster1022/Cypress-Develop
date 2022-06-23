@@ -1,0 +1,530 @@
+.fa { &:not(.fa-spin) { animation: none; } }
+
+.reporter {
+  min-height: 0; // needed for firefox or else scrolling gets funky
+
+  .container {
+    background-color: $gray-1000;
+    flex-grow: 2;
+    overflow-y: auto;
+  }
+
+  .wrap {
+    border-bottom: 1px solid $gray-900;
+    margin-bottom: 40px;
+    padding-left: 0;
+    width: 100%;
+  }
+
+  .runnables {
+    padding-left: 0;
+  }
+
+  .no-tests {
+    background-color: $gray-1000;
+    min-height: 20px;
+    padding: 24px;
+
+    h2 {
+      color: $red-400;
+      font-size: 1.3em;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 0.6em;
+    }
+
+    h3 {
+      color: $indigo-400;
+      font-size: 1.2em;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-top: 1.2em;
+      margin-bottom: 0.3em;
+    }
+
+    p {
+      font-size: 1.1em;
+
+      &.text-muted {
+        color: $gray-600;
+      }
+    }
+
+    a {
+      color: $indigo-300;
+      cursor: pointer;
+    }
+
+    hr {
+      margin-top: 1.6em;
+      margin-bottom: 1.6em;
+      border: none;
+      height: 1px;
+      color: $gray-900;
+      background-color: $gray-900;
+    }
+
+    .open-studio,
+    .open-studio-desc {
+      display: none;
+    }
+
+    svg {
+      margin-right: 5px;
+      vertical-align: text-top;
+
+      &.warning-icon {
+        margin-top: 2px;
+      }
+
+      .icon-light {
+        fill: $indigo-600;
+      }
+    }
+  }
+
+  &.experimental-studio-enabled .no-tests .open-studio,
+  &.experimental-studio-enabled .no-tests .open-studio-desc {
+    display: inline;
+  }
+
+  .runnable {
+    width: 100%;
+    color: $gray-400;
+    background-color: $gray-1000;
+    overflow: auto;
+    line-height: 18px;
+    padding-left: 0;
+
+    .runnable-wrapper {
+      border-left: 4px solid transparent;
+      padding: 0 0 0 4px;
+
+      .collapsible-header {
+        &:focus {
+          .collapsible-header-inner {
+            background-color: $gray-1000;
+            cursor: pointer;
+          }
+        }
+
+        .collapsible-header-inner {
+          &:hover {
+            background-color: $gray-900;
+            cursor: pointer;
+          }
+
+          &:focus {
+            outline: 0;
+          }
+
+          height: 100%;
+          padding: 5px 15px 5px 5px;
+          width: 100%;
+        }
+      }
+
+      &:hover {
+        .runnable-controls-studio {
+          opacity: 0.5;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    .attempt-item:hover {
+      > .runnable-wrapper .runnable-controls i.fa-redo {
+        visibility: visible !important;
+      }
+
+      .hooks-container, .runnable-err-wrapper {
+        border-color: $gray-500;
+      }
+    }
+
+    .runnable-state,.attempt-state {
+      display: inline-block;
+      line-height: 18px;
+      margin-right: 5px;
+      min-width: 12px;
+      text-align: center;
+      font-size: 11px;
+    }
+
+    &.suite .collapsible-indicator {
+      margin-left: 2px;
+      .icon-dark {
+        stroke: $gray-800;
+      }
+    }
+
+    &.runnable-failed > div > .runnable-wrapper,
+    &.runnable-failed > div > .runnable-instruments {
+      border-left: 4px solid $fail;
+    }
+
+    &.runnable-pending > div > .runnable-wrapper,
+    &.runnable-pending > div > .runnable-instruments {
+      border-left: 4px solid $pending;
+      padding-bottom: 0;
+    }
+
+    &.runnable-passed > div > .runnable-wrapper,
+    &.runnable-passed > div > .runnable-instruments {
+      border-left: 4px solid $pass;
+    }
+
+    .runnable-retried > div > .runnable-wrapper,
+    .runnable-retried > div > .runnable-instruments {
+      border-left: 4px solid $retried;
+    }
+
+    &.runnable-studio.runnable-passed > div > .runnable-wrapper,
+    &.runnable-studio.runnable-passed > div > .runnable-instruments {
+      border-left: 4px solid $indigo-700;
+    }
+
+    &.runnable-skipped > .runnable-wrapper {
+      .runnable-title {
+        color: $gray-600;
+      }
+    }
+
+    &.runnable-skipped > div > .runnable-wrapper,
+    &.runnable-skipped > div > .runnable-instruments {
+      border-left: 4px solid $gray-500;
+    }
+
+    &.suite > div > .runnable-wrapper {
+      .runnable-title {
+        color: $gray-50;
+        font-size: 13px;
+      }
+    }
+
+    &.test.runnable-passed.runnable-studio {
+      .studio-controls {
+        display: flex;
+
+        .studio-save, .studio-copy {
+          display: block;
+        }
+      }
+    }
+
+    &.test.runnable-pending {
+      .runnable-title {
+        color: $indigo-300;
+      }
+
+      .runnable-commands-region {
+        display: none;
+      }
+
+      .studio-controls {
+        display: flex;
+      }
+    }
+
+    &.test.runnable-failed {
+      .studio-controls {
+        display: flex;
+      }
+    }
+
+    .runnable-state-icon {
+      flex-shrink: 0;
+      margin-right: 5px;
+      margin-top: 4px;
+
+      &.fa-spin {
+        .icon-light {
+          stroke: $gray-800;
+        }
+      }
+
+      &.wand-icon {
+        .icon-light {
+          fill: $indigo-700;
+        }
+      }
+    }
+  }
+
+  .runnable-instruments {
+    border-left: 4px solid transparent;
+    padding-bottom: 5px;
+  }
+
+  .runnable-title {
+    font-family: $font-system;
+    font-size: 12.5px;
+    min-width: $reporter-contents-min-width;
+    white-space: pre-line;
+
+    &:focus {
+      outline: 1px dotted $gray-400;
+    }
+  }
+
+  .runnable-wrapper > .collapsible-header {
+    overflow: auto;
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+
+    &:focus {
+      outline: 1px dotted $gray-400;
+      outline-offset: 3px;
+    }
+  }
+
+  .suite > div .runnable-wrapper,
+  .test .runnable-wrapper > .collapsible-header {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .runnable-controls {
+    float: right;
+    height: 18px;
+
+    label {
+      padding: 2px 4px;
+    }
+
+    .runnable-controls-status {
+      margin: 0 2px;
+      color: $gray-500;
+      visibility: hidden;
+      font-size: 15px;
+    }
+
+    .runnable-controls-studio {
+      color: $indigo-300;
+      opacity: 0;
+      display: none;
+    }
+  }
+
+  .test.runnable-failed .runnable-controls .runnable-controls-status {
+    visibility: visible;
+  }
+
+  &.experimental-studio-enabled .runnable-controls .runnable-controls-studio {
+    display: inline;
+  }
+
+  &.studio-active .runnable-controls .runnable-controls-studio {
+    display: none;
+  }
+
+  .test .collapsible {
+    display: flex;
+    flex-direction: column;
+
+    .runnable-wrapper .collapsible-header-inner {
+      width: 100%;
+
+      .collapsible-header-text {
+        display: flex;
+
+        .runnable-title {
+          flex-grow: 1;
+          padding-right: 10px;
+        }
+      }
+    }
+  }
+
+  .collapsible-header {
+    display: flex;
+  }
+
+  .test > .collapsible > .runnable-wrapper > .collapsible-header > .collapsible-header-inner > .collapsible-indicator {
+    display: none;
+  }
+
+  .runnable-header {
+    @include inner-header;
+
+    span > span > a > svg {
+      margin-bottom: -2px;
+      margin-right: 8px;
+    }
+
+    a, a:active, a:focus, a:hover {
+      color: $gray-700;
+      font-weight: 300;
+      strong {
+        font-weight: 500;
+      }
+    }
+
+    .duration {
+      border: 1px solid $gray-900;
+      border-radius: 16px;
+      color: $gray-600;
+      float: right;
+      font-size: 12px;
+      line-height: 16px;
+      padding: 2px 6px;
+    }
+  }
+
+  .studio-controls {
+    display: none;
+    margin: 10px 20px 10px 0;
+
+    button {
+      border-radius: 5px;
+      font-family: $font-sans;
+      font-size: 12px;
+      padding: 6px 20px;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:not(.studio-copy):active {
+        box-shadow: inset 0 3px 5px rgba($white, 0.125);
+      }
+    }
+
+    .studio-cancel {
+      background-color: $gray-900;
+      color: $gray-400;
+
+      &:hover {
+        background-color: $gray-800;
+      }
+    }
+
+    .studio-copy-wrapper {
+      margin-left: auto;
+
+      .studio-copy {
+        background-color: $indigo-50;
+        color: $indigo-500;
+        display: none;
+        font-size: 16px;
+        padding: 4px 10px 2px;
+
+        &:hover, &:focus {
+          background-color: $indigo-100;
+        }
+
+        &.studio-copy-success {
+          color: $pass;
+        }
+
+        &[disabled],
+        &[disabled]:hover,
+        &[disabled]:active {
+          color: $white;
+          background-color: $gray-500;
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    .studio-save {
+      background-color: $indigo-500;
+      color: $white;
+      display: none;
+      margin-left: 4px;
+
+      &:hover {
+        background-color: $indigo-400;
+      }
+
+      &[disabled],
+      &[disabled]:hover,
+      &[disabled]:active {
+        color: $white;
+        background-color: $gray-500;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .runnable-loading {
+    font-family: $font-system;
+  
+    .runnable-loading-animation {
+      display: flex;
+      margin: 3.5rem auto 1.5rem;
+      padding: 0 5px;
+      width: 160px;
+
+      div {
+        animation: scaling 1.65s ease-in-out infinite;
+        border-radius: 50%;
+        height: 40px;
+        margin: 0 -5px;
+        transform: scale(0.5);
+        width: 40px;
+      }
+
+      div:nth-child(1) {
+        animation-delay:0.1s;
+        background: $jade-400;
+      }
+
+      div:nth-child(2) {
+        animation-delay:0.2s;
+        background: $indigo-400;
+      }
+
+      div:nth-child(3) {
+        animation-delay:0.3s;
+        background: $red-400;
+      }
+
+      div:nth-child(4) {
+        animation-delay:0.4s;
+        background: $orange-400;
+      }
+
+      div:nth-child(5) {
+        animation-delay:0.5s;
+        background: $gray-400;
+      }
+
+      @keyframes scaling {
+        0%, 20%, 80%, 100% {
+          opacity: 100%;
+          transform: scale(0.5);
+        }
+
+        50% {
+          opacity: 50%;
+          transform: scale(1);
+        }
+      }
+    }
+
+    .runnable-loading-title {
+      font-family: $font-sans;
+      font-size: 20px;
+      text-align: center;
+    }
+  }
+}
+
+.reporter.multiSpecs {
+  overflow-y: auto;
+
+  .container {
+    flex-grow: 0;
+    overflow-y: unset;
+
+    .wrap {
+      margin-bottom: 0;
+    }
+  }
+}
